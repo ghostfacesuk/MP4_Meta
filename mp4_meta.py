@@ -13,7 +13,8 @@ def extract_numbers_between(file_path, start_value, end_value, output_file_path)
 
     with open(output_file_path, 'w') as output_file:
         for number in extracted_numbers:
-            output_file.write(number + '\n')
+            number_with_newline = number[:len(start_value)] + '\n' + number[len(start_value):len(number) - len(end_value)] + '\n' + number[len(number) - len(end_value):]
+            output_file.write(number_with_newline + '\n')
 
     print(f"Extracted numbers saved to '{output_file_path}'.")
 
@@ -25,4 +26,6 @@ end_value = "66726565"
 output_file_path = 'extracted_numbers.txt'
 
 extract_numbers_between(file_path, start_value, end_value, output_file_path)
+
+
 
