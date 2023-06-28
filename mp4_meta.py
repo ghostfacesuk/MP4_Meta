@@ -13,6 +13,13 @@ def extract_numbers_between(file_path, start_value, end_value, output_file_path)
 
     with open(output_file_path, 'w') as output_file:
         for number in extracted_numbers:
+            # Check the two characters after start_value
+            start_chars = number[len(start_value):len(start_value) + 2]
+            if start_chars == '00':
+                output_file.write("No entries found\n\n")
+            else:
+                output_file.write(f"{start_chars} - entries found!\n\n")
+
             if start_value in number:
                 number_with_newline = number[:len(start_value)] + ' - vsd' + '\n' + number[len(start_value):len(start_value) + 2] + '\n' + number[len(start_value) + 2:len(number) - len(end_value)] + '\n' + number[len(number) - len(end_value):]
             else:
